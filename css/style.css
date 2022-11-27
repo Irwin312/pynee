@@ -1,0 +1,769 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow");
+
+/* Button */
+
+.container {
+  width: 100%;
+  text-align: center;
+  margin-top: 25vh;
+}
+
+.button-circle {
+  stroke: #f8aa28;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  -webkit-transition: all 0.5s ease-in-out;
+  opacity: 0.3;
+}
+
+.playBut {
+  /* border: 1px solid red;
+        */
+  display: inline-block;
+  -webkit-transition: all 0.5s ease;
+}
+
+.playBut .button-triangle {
+  -webkit-transition: all 0.7s ease-in-out;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 480;
+  stroke: #fff;
+  transform: translateY(0);
+}
+
+.playBut:hover .button-triangle {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  stroke: #f8aa28;
+  animation: nudge 0.7s ease-in-out;
+}
+
+@keyframes nudge {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  70% {
+    transform: translateX(-2px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.playBut:hover .button-circle {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+/* Letter */
+
+* {
+  box-sizing: border-box;
+}
+
+/* letter open css  */
+#wrapper {
+  width: auto;
+  margin: auto;
+}
+
+.envelope {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto 0;
+  background: #ddd;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.25);
+  position: relative;
+  perspective: 800px;
+}
+
+.envelope:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 0 solid rgba(0, 0, 0, 0.25);
+  border-width: 45px 100px;
+  border-top-color: transparent;
+  z-index: 2;
+}
+
+.envelope .flap {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  border: 0 solid transparent;
+  border-width: 50px 100px;
+  z-index: 3;
+}
+
+.envelope .flap.front {
+  border-left-color: #eee;
+  border-right-color: #eee;
+  border-bottom-color: #ccc;
+  z-index: 3;
+}
+
+.envelope .flap.front:after {
+  content: "";
+  width: 100%;
+  height: 0;
+  position: absolute;
+  left: -100px;
+  bottom: -50px;
+  border: 0 solid transparent;
+  border-width: 49px 100px;
+  border-bottom-color: #eee;
+}
+
+.envelope .flap.top {
+  border-top-width: 55px;
+  border-top-color: #aaa;
+  z-index: 3;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  -webkit-transform-origin-y: top;
+  transform-origin-y: top;
+  perspective: 800;
+  transform-style: preserve-3d;
+}
+
+.envelope.open .flap.top {
+  animation-name: flip;
+}
+
+.envelope .flap.top:after {
+  content: "";
+  position: absolute;
+  left: -100px;
+  /* border-left-width */
+  top: -55px;
+  /* border-top-width */
+  width: 100%;
+  height: 0;
+  border: 0 solid transparent;
+  border-width: 54px 100px;
+  border-top-color: #eee;
+}
+
+.envelope .letter {
+  position: absolute;
+  width: 194px;
+  height: 84px;
+  background: url("https://st.quantrimang.com/photos/image/2021/10/25/Background-20-11-5.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 8px;
+  left: 3px;
+  border: 1px solid #ccc;
+  z-index: 1;
+  animation-duration: 2s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  transform-style: preserve-3d;
+}
+
+.envelope.open .letter {
+  animation-name: remove;
+}
+
+.envelope .letter:before,
+.envelope .letter:after {
+  content: "";
+  position: absolute;
+  width: 192px;
+  height: 75%;
+  left: -1px;
+  background: #fff;
+  border: 1px solid #ccc;
+  animation-duration: 1s;
+  animation-delay: 3.5s;
+  animation-fill-mode: forwards;
+  -webkit-transform-origin-y: top;
+  transform-origin-y: top;
+  transform-style: preserve-3d;
+  transform: rotateX(10deg);
+}
+
+.envelope .letter:before {
+  z-index: 1;
+}
+
+.envelope.open .letter:before {
+  animation-name: fold-up;
+}
+
+.envelope .letter:after {
+  animation-delay: 4.5s;
+  animation-fill-mode: forwards;
+  -webkit-transform-origin-y: bottom;
+  transform-origin-y: bottom;
+  transform: rotateX(-5deg);
+  bottom: 0;
+}
+
+.envelope.open .letter:after {
+  animation-name: fold-down;
+}
+
+/* letter open animation */
+@keyframes flip {
+  100% {
+    transform: rotateX(180deg);
+    z-index: 1;
+  }
+}
+
+@keyframes remove {
+  50% {
+    top: -120px;
+  }
+
+  100% {
+    top: 8px;
+    z-index: 3;
+  }
+}
+
+@keyframes fold-up {
+  from {
+  }
+
+  to {
+    transform: rotateX(140deg);
+  }
+}
+
+@keyframes fold-down {
+  from {
+  }
+
+  to {
+    transform: rotateX(-140deg);
+  }
+}
+
+/* letter drop from top animation  */
+.pop-up {
+  margin-top: -100px;
+  animation: drop 1s ease forwards;
+}
+
+@keyframes drop {
+  0% {
+  }
+
+  100% {
+    transform: translateY(300px);
+    opacity: 1;
+  }
+}
+
+/* image .pop-up with rotating animation */
+.book {
+  height: 65vh;
+  width: 21%;
+  margin: auto;
+  z-index: 6;
+  opacity: 0;
+  animation: circles 1s 5s ease forwards;
+}
+
+@keyframes circles {
+  0% {
+    transform: scale(1);
+    border-radius: 20%;
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(5);
+    border-radius: 20%;
+    opacity: 1;
+  }
+}
+
+.book-first {
+  height: 100%;
+  width: 100%;
+  font-size: 12px;
+  z-index: 7;
+  background: url("https://st.quantrimang.com/photos/image/2021/10/25/Background-20-11-5.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+}
+
+/* emoji top and bottom css */
+.top {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+/* dancing letter css wiht animation */
+.let {
+  margin-top: 120px;
+  font-size: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  opacity: 0;
+  animation: textview 1s 20s ease forwards;
+}
+
+.happy h1 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.happy h1 span {
+  color: #262626;
+  background: #fff;
+  padding: 4px 6px;
+  display: table-cell;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3), 0 5px 0 #ccc;
+  animation: animate 0.5s infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+h1 span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+h1 span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+h1 span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+h1 span:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+h1 span:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+h1 span:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+h1 span:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+h1 span:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+h1 span:nth-child(9) {
+  animation-delay: 0.9s;
+}
+
+h1 span:nth-child(10) {
+  animation-delay: 1s;
+}
+
+@keyframes textview {
+  100% {
+    opacity: 1;
+  }
+}
+
+/* gif css and animation here */
+.gif {
+  margin-top: 34px;
+  height: 50px;
+  width: 100%;
+  background: url(./images//blast.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  animation: textview 1s 20s ease forwards;
+}
+
+/* Heart */
+
+.container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+}
+h1.main,
+p.demos {
+  -webkit-animation-delay: 18s;
+  -moz-animation-delay: 18s;
+  -ms-animation-delay: 18s;
+  animation-delay: 18s;
+}
+.sp-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: -webkit-radial-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.7)
+  );
+  background: -moz-radial-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.7)
+  );
+  background: -ms-radial-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.7)
+  );
+  background: radial-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.3) 35%,
+    rgba(0, 0, 0, 0.7)
+  );
+}
+.sp-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+}
+.sp-container h2 {
+  position: absolute;
+  top: 50%;
+  line-height: 100px;
+  height: 90px;
+  margin-top: -68px;
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+  color: transparent;
+  -webkit-animation: blurFadeInOut 3s ease-in backwards;
+  -moz-animation: blurFadeInOut 3s ease-in backwards;
+  -ms-animation: blurFadeInOut 3s ease-in backwards;
+  animation: blurFadeInOut 3s ease-in backwards;
+}
+.sp-container h2.frame-1 {
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.sp-container h2.frame-2 {
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  -ms-animation-delay: 3s;
+  animation-delay: 3s;
+}
+.sp-container h2.frame-3 {
+  -webkit-animation-delay: 6s;
+  -moz-animation-delay: 6s;
+  -ms-animation-delay: 6s;
+  animation-delay: 6s;
+}
+.sp-container h2.frame-4 {
+  font-size: 30px;
+  -webkit-animation-delay: 9s;
+  -moz-animation-delay: 9s;
+  -ms-animation-delay: 9s;
+  animation-delay: 9s;
+}
+.sp-container h2.frame-5 {
+  -webkit-animation: none;
+  -moz-animation: none;
+  -ms-animation: none;
+  animation: none;
+  color: transparent;
+  text-shadow: 0px 0px 1px rgb(255, 255, 255);
+}
+.sp-container h2.frame-5 span {
+  -webkit-animation: blurFadeIn 3s ease-in 12s backwards;
+  -moz-animation: blurFadeIn 1s ease-in 12s backwards;
+  -ms-animation: blurFadeIn 3s ease-in 12s backwards;
+  animation: blurFadeIn 3s ease-in 12s backwards;
+  color: transparent;
+  text-shadow: 0px 0px 1px rgb(255, 255, 255);
+}
+.sp-container h2.frame-5 span:nth-child(2) {
+  -webkit-animation-delay: 13s;
+  -moz-animation-delay: 13s;
+  -ms-animation-delay: 13s;
+  animation-delay: 13s;
+}
+.sp-container h2.frame-5 span:nth-child(3) {
+  -webkit-animation-delay: 14s;
+  -moz-animation-delay: 14s;
+  -ms-animation-delay: 14s;
+  animation-delay: 14s;
+}
+.sp-globe {
+  position: absolute;
+  width: 282px;
+  height: 273px;
+  left: 50%;
+  top: 50%;
+  margin: -137px 0 0 -141px;
+
+  -webkit-animation: fadeInBack 3.6s linear 14s backwards;
+  -moz-animation: fadeInBack 3.6s linear 14s backwards;
+  -ms-animation: fadeInBack 3.6s linear 14s backwards;
+  animation: fadeInBack 3.6s linear 14s backwards;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+  -webkit-transform: scale(5);
+  -moz-transform: scale(5);
+  -o-transform: scale(5);
+  -ms-transform: scale(5);
+  transform: scale(5);
+}
+.sp-circle-link {
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  margin-left: -50px;
+  text-align: center;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  color: #3f1616;
+  font-size: 25px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-animation: fadeInRotate 1s linear 16s backwards;
+  -moz-animation: fadeInRotate 1s linear 16s backwards;
+  -ms-animation: fadeInRotate 1s linear 16s backwards;
+  animation: fadeInRotate 1s linear 16s backwards;
+  -webkit-transform: scale(1) rotate(0deg);
+  -moz-transform: scale(1) rotate(0deg);
+  -o-transform: scale(1) rotate(0deg);
+  -ms-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+}
+.sp-circle-link:hover {
+  background: #85373b;
+  color: #fff;
+}
+
+@-webkit-keyframes blurFadeInOut {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    -webkit-transform: scale(1.3);
+  }
+  20%,
+  75% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    -webkit-transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    text-shadow: 0px 0px 50px #fff;
+    -webkit-transform: scale(0);
+  }
+}
+@-webkit-keyframes blurFadeIn {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    -webkit-transform: scale(1.3);
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: 0px 0px 10px #fff;
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    -webkit-transform: scale(1);
+  }
+}
+@-webkit-keyframes fadeInBack {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+  }
+  50% {
+    opacity: 0.4;
+    -webkit-transform: scale(2);
+  }
+  100% {
+    opacity: 0.2;
+    -webkit-transform: scale(5);
+  }
+}
+@-webkit-keyframes fadeInRotate {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) rotate(0deg);
+  }
+}
+
+@-moz-keyframes blurFadeInOut {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    -moz-transform: scale(1.3);
+  }
+  20%,
+  75% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    -moz-transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    text-shadow: 0px 0px 50px #fff;
+    -moz-transform: scale(0);
+  }
+}
+@-moz-keyframes blurFadeIn {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    -moz-transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    -moz-transform: scale(1);
+  }
+}
+@-moz-keyframes fadeInBack {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0);
+  }
+  50% {
+    opacity: 0.4;
+    -moz-transform: scale(2);
+  }
+  100% {
+    opacity: 0.2;
+    -moz-transform: scale(5);
+  }
+}
+@-moz-keyframes fadeInRotate {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes blurFadeInOut {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    transform: scale(1.3);
+  }
+  20%,
+  75% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    text-shadow: 0px 0px 50px #fff;
+    transform: scale(0);
+  }
+}
+@keyframes blurFadeIn {
+  0% {
+    opacity: 0;
+    text-shadow: 0px 0px 40px #fff;
+    transform: scale(1.3);
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: 0px 0px 10px #fff;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0px 0px 1px #fff;
+    transform: scale(1);
+  }
+}
+@keyframes fadeInBack {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(5);
+  }
+}
+@keyframes fadeInRotate {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
